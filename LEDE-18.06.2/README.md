@@ -1,11 +1,26 @@
-* Openwrt-lede18.06.02 Orange-Pi-Zero ADD drivers wifi xradio-xr819
+* Openwrt-lede18.06.02 Orange-Pi-Zero ADD drivers wifi xradio-xr819, soc-audio.
 
-* Поместить LEDE-18.06.2_add-opizero_ON-xradio-xr819_usb2_usb3_ir_spi.patch в корневой каталог с сырцами
+* 1. Поместить LEDE-18.06.2_add-opizero_ON-xradio-xr819_soc-audio_usb2_usb3_spi.patch в корневой каталог с сырцами
 * И с каталога дать комманду: 
-patch -p1 < LEDE-18.06.2_add-opizero_ON-xradio-xr819_usb2_usb3_ir_spi.patch
-* Поместить архив backports-2019-03-13.tar.xz в корневом каталоге в /dl
-* И все.. 
-make menuconfig > Kernel modules > Wireless Drivers отметить <m> kmod-xradio
+patch -p1 < LEDE-18.06.2_add-opizero_ON-xradio-xr819_soc-audio_usb2_usb3_spi.patch
+* 2. Поместить архив backports-2019-03-13.tar.xz в корневом каталоге в /dl
+* 3. И все.. make menuconfig > Kernel modules > Wireless Drivers отметить <m> kmod-xradio
+* > Kernel modules > Sound Support отметить <m>
+* kmod-sound-soc-sunxi
+* kmod-sound-soc-sun8i-codec
+* kmod-sound-soc-sun8i-codec-analog
 * Exit and save.
-* 7. И что бы только пакеты пересобрать: 
-make package/compile V=s
+
+* 4.
+make clean
+* У меня почему то выскакивала ошибка пока не сделал make clean
+
+* 5.
+make V=s
+
+* 6. Потом не забыть вписать на работающей самой системе opi-zero в rc.local
+```
+amixer -c 0 -q set "Line Out" 84%+ unmute &
+amixer -c 0 -q set "DAC" 84%+ unmute &
+exit 0
+```
