@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# OpenWrt-master Orange-Pi-Zero ADD drivers wifi xradio-xr819, soc-audio.
-=======
 # OpenWrt Orange-Pi-Zero ADD drivers wifi xradio-xr819, soc-audio.
->>>>>>> 9eae78f08268c1e71b17cd12d1ad8a9803cfbcfe
+
+
+- **[HELP.](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/tree/master/openwrt-master-Snapshot-17.04.2019.20-30)**
+
