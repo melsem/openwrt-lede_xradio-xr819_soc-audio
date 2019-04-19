@@ -4,9 +4,9 @@
 ```
 patch -p1 < dts-add-usb2-usb3-soc_codec-opi_zero-wifi_xradio_xr819_openwrt-master.patch
 ```
-* Wifi "ON": cp add-on_wifi- mac80211.patch -> dir-openwrt
+* Wifi "ON": cp add-on_wifi-mac80211.patch -> dir-openwrt
 ```
-patch -p1 < add-on_wifi- mac80211.patch
+patch -p1 < add-on_wifi-mac80211.patch
 ```
 * Compile
 ```
