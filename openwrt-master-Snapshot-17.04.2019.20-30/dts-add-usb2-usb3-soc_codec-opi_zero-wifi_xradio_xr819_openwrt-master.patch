@@ -1,19 +1,31 @@
 From: Semen Kreyda <aswerklon@gmail.com>
 Date: Thu, Apr 18 2019 21:01:56 
-Subject: [PATCH] ARM: dts: sun8i:
+Subject: [PATCH] ARM: dts: sunxi: H2+: enable soc-audio, usb2, usb3, SPI NOR on Orange Pi Zero boards
+Subject: [PATCH] xr819: xradio: add xradio driver to @KERNEL/linux/kernel/projects/backports/stable/v4.19.32/
 
 OpenWrt Branch master Apr 18 2019  !!
 Enabled support for xr819 radio module and
 soc-AUDIO on device-sun8i-h2-plus-orangepi-zero.
 
-Add to the device tree. openwrt-master kernel linux-4.14.111
-
 Signed: Semen Kreyda <aswerklon@gmail.com>
 ---
+ arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 8 ++++++++
+ arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 22 ++++++++++++++++++++++
+ target/linux/sunxi/image/cortex-a7.mk		   | 7 -++++++
+ target/linux/sunxi/modules.mk			   | 42 --++-+--++-+++++++++++++++++++++++++++++++
+ target/linux/sunxi/config-4.14			   | 2 --
+ package/kernel/mac80211/Makefile		   | 25 +++++++++++++++++++++++++
+ package/kernel/mac80211/patches/build/52-add-wifi_xradio_xr819-4.19.32-1.patch | 18730 ++
 
 --- a/target/linux/sunxi/patches-4.14/203-dts-add-usb2-usb3-soc_codec-opi_zero.patch	1970-01-01 03:00:00.000000000 +0300
-+++ b/target/linux/sunxi/patches-4.14/203-dts-add-usb2-usb3-soc_codec-opi_zero.patch	2019-04-19 04:23:35.603070308 +0300
-@@ -0,0 +1,42 @@
++++ b/target/linux/sunxi/patches-4.14/203-dts-add-usb2-usb3-soc_codec-opi_zero.patch	2019-04-25 23:14:44.144763750 +0300
+@@ -0,0 +1,48 @@
++From: Semen Kreyda <aswerklon@gmail.com>
++Date: Thu, Apr 18 2019 21:01:56
++Subject: [PATCH] ARM: dts: sunxi: H2+: enable in boot soc-audio, usb2, usb3, SPI NOR on Orange Pi Zero boards
++---
++ arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 8 ++++++++
++
 +--- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
 ++++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
 +@@ -103,6 +103,14 @@
@@ -57,60 +69,61 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
 + 	flash@0 {
 + 		#address-cells = <1>;
 --- a/target/linux/sunxi/patches-4.14/204-dts-wifi-add-xradio.patch	1970-01-01 03:00:00.000000000 +0300
-+++ b/target/linux/sunxi/patches-4.14/204-dts-wifi-add-xradio.patch	2019-04-19 04:23:35.603070308 +0300
-@@ -0,0 +1,50 @@
-+--- a/target/linux/sunxi/patches-4.14/204-dts-wifi-add-xradio.patch.patch	1970-01-01 03:00:00.000000000 +0300
-++++ b/target/linux/sunxi/patches-4.14/204-dts-wifi-add-xradio.patch.patch	2019-04-12 14:17:28.000000000 +0300
-+@@ -0,0 +1,47 @@
-++diff --git a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-++index 454408b..df356b5 100644
-++--- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-+++++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-++@@ -49,6 +49,7 @@
-++ 
-++ #include <dt-bindings/gpio/gpio.h>
-++ #include <dt-bindings/input/input.h>
-+++#include <dt-bindings/pinctrl/sun4i-a10.h>
-++ 
-++ / {
-++ 	model = "Xunlong Orange Pi Zero";
-++@@ -88,6 +88,23 @@
-++ 		enable-active-high;
-++ 		gpio = <&pio 0 20 GPIO_ACTIVE_HIGH>;
-++ 	};
-+++
-+++	reg_vdd_cpux: vdd-cpux-regulator {
-+++		compatible = "regulator-gpio";
-+++		regulator-name = "vdd-cpux";
-+++		regulator-type = "voltage";
-+++		regulator-boot-on;
-+++		regulator-always-on;
-+++		regulator-min-microvolt = <1100000>;
-+++		regulator-max-microvolt = <1300000>;
-+++		regulator-ramp-delay = <50>; /* 4ms */
-+++
-+++		gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+++		enable-active-high;
-+++		gpios-states = <1>;
-+++		states = <1100000 0
-+++			  1300000 1>;
-+++	};
-++ 
-++ 	wifi_pwrseq: wifi_pwrseq {
-++ 		compatible = "mmc-pwrseq-simple";
-++@@ -144,6 +144,10 @@
-++ 	 */
-++ 	xr819: sdio_wifi@1 {
-++ 		reg = <1>;
-+++		compatible = "xradio,xr819";
-+++		interrupt-parent = <&pio>;
-+++		interrupts = <6 10 IRQ_TYPE_EDGE_RISING>;
-+++		interrupt-names = "host-wake";
-++ 	};
-++ };
-++ 
++++ b/target/linux/sunxi/patches-4.14/204-dts-wifi-add-xradio.patch	2019-04-25 23:13:34.996420861 +0300
+@@ -0,0 +1,51 @@
++From: Semen Kreyda <aswerklon@gmail.com>
++Date: Thu, Apr 18 2019 21:01:56
++Subject: [PATCH] ARM: dts: sunxi: xr819: enable xradio in boot on Orange Pi Zero boards
++---
++ arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 22 ++++++++++++++++++++++
++
++--- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
+++++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
++@@ -49,6 +49,7 @@
++ 
++ #include <dt-bindings/gpio/gpio.h>
++ #include <dt-bindings/input/input.h>
+++#include <dt-bindings/pinctrl/sun4i-a10.h>
++ 
++ / {
++ 	model = "Xunlong Orange Pi Zero";
++@@ -88,6 +88,23 @@
++ 		enable-active-high;
++ 		gpio = <&pio 0 20 GPIO_ACTIVE_HIGH>;
++ 	};
+++
+++	reg_vdd_cpux: vdd-cpux-regulator {
+++		compatible = "regulator-gpio";
+++		regulator-name = "vdd-cpux";
+++		regulator-type = "voltage";
+++		regulator-boot-on;
+++		regulator-always-on;
+++		regulator-min-microvolt = <1100000>;
+++		regulator-max-microvolt = <1300000>;
+++		regulator-ramp-delay = <50>; /* 4ms */
+++
+++		gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
+++		enable-active-high;
+++		gpios-states = <1>;
+++		states = <1100000 0
+++			  1300000 1>;
+++	};
++ 
++ 	wifi_pwrseq: wifi_pwrseq {
++ 		compatible = "mmc-pwrseq-simple";
++@@ -144,6 +144,10 @@
++ 	 */
++ 	xr819: sdio_wifi@1 {
++ 		reg = <1>;
+++		compatible = "xradio,xr819";
+++		interrupt-parent = <&pio>;
+++		interrupts = <6 10 IRQ_TYPE_EDGE_RISING>;
+++		interrupt-names = "host-wake";
++ 	};
++ };
++ 
 --- a/target/linux/sunxi/image/cortex-a7.mk	2019-04-19 14:42:53.935328528 +0300
-+++ b/target/linux/sunxi/image/cortex-a7.mk	2019-04-19 04:23:35.599070288 +0300
++++ b/target/linux/sunxi/image/cortex-a7.mk	2019-04-19 03:19:45.917714265 +0300
 @@ -110,7 +110,12 @@
  
  define Device/sun8i-h2-plus-orangepi-zero
@@ -126,7 +139,7 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
    SUNXI_DTS:=sun8i-h2-plus-orangepi-zero
  endef
 --- a/target/linux/sunxi/config-4.14	2019-04-19 14:42:53.931328508 +0300
-+++ b/target/linux/sunxi/config-4.14	2019-04-19 04:23:35.599070288 +0300
++++ b/target/linux/sunxi/config-4.14	2019-04-19 00:17:02.319348716 +0300
 @@ -503,8 +503,6 @@
  CONFIG_SND_SOC_I2C_AND_SPI=y
  # CONFIG_SND_SUN4I_I2S is not set
@@ -137,7 +150,7 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
  CONFIG_SOUND_OSS_CORE=y
  # CONFIG_SOUND_OSS_CORE_PRECLAIM is not set
 --- a/target/linux/sunxi/modules.mk	2019-04-19 14:42:53.935328528 +0300
-+++ b/target/linux/sunxi/modules.mk	2019-04-19 04:23:35.599070288 +0300
++++ b/target/linux/sunxi/modules.mk	2019-04-19 00:18:35.767812102 +0300
 @@ -69,17 +69,49 @@
  $(eval $(call KernelPackage,sun4i-emac))
  
@@ -195,7 +208,7 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
 +
 +$(eval $(call KernelPackage,sound-soc-sun8i-codec-analog))
 --- a/package/kernel/mac80211/Makefile	2019-04-19 14:42:51.775317817 +0300
-+++ b/package/kernel/mac80211/Makefile	2019-04-19 13:52:55.844461798 +0300
++++ b/package/kernel/mac80211/Makefile	2019-04-19 14:01:46.475093053 +0300
 @@ -31,6 +31,7 @@
  	p54-common p54-pci p54-spi p54-usb \
  	rsi91x rsi91x-usb rsi91x-sdio\
@@ -264,8 +277,26 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
  $(eval $(call KernelPackage,cfg80211))
  $(eval $(call KernelPackage,mac80211))
 --- a/package/kernel/mac80211/patches/build/52-add-wifi_xradio_xr819-4.19.32-1.patch	1970-01-01 03:00:00.000000000 +0300
-+++ b/package/kernel/mac80211/patches/build/52-add-wifi_xradio_xr819-4.19.32-1.patch	2019-04-19 04:23:33.575060252 +0300
-@@ -0,0 +1,18730 @@
++++ b/package/kernel/mac80211/patches/build/52-add-wifi_xradio_xr819-4.19.32-1.patch	2019-04-25 23:46:55.962343116 +0300
+@@ -0,0 +1,18748 @@
++From: Semen Kreyda <aswerklon@gmail.com>
++Date: Thu, Apr 18 2019 21:01:56 
++Subject: [PATCH] xr819: xradio: add xradio driver to @KERNEL/linux/kernel/projects/backports/stable/v4.19.32/
++
++OpenWrt Branch master Apr 18 2019  !!
++add xradio driver 
++on device-sun8i-h2-plus-orangepi-zero.
++
++Signed: Semen Kreyda <aswerklon@gmail.com>
++---
++ defconfigs/wifi 		| 1 +
++ Kconfig.local 			| 3 +++
++ local-symbols			| 1 +
++ MAINTAINERS			| 4 ++++
++ drivers/net/wireless/Kconfig	| 1 +
++ drivers/net/wireless/Makefile	| 1 +
++ drivers/net/wireless/xradio/	| 1624 ++
++
 +--- a/defconfigs/wifi	2017-11-05 22:03:11.000000000 +0200
 ++++ b/defconfigs/wifi	2019-04-12 21:12:15.000000000 +0300
 +@@ -132,5 +132,6 @@

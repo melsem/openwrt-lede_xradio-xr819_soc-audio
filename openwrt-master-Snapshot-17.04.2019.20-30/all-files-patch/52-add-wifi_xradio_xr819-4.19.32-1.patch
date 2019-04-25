@@ -1,6 +1,24 @@
 --- a/package/kernel/mac80211/patches/build/52-add-wifi_xradio_xr819-4.19.32-1.patch	1970-01-01 03:00:00.000000000 +0300
-+++ b/package/kernel/mac80211/patches/build/52-add-wifi_xradio_xr819-4.19.32-1.patch	2019-04-19 04:23:33.575060252 +0300
-@@ -0,0 +1,18730 @@
++++ b/package/kernel/mac80211/patches/build/52-add-wifi_xradio_xr819-4.19.32-1.patch	2019-04-25 23:46:55.962343116 +0300
+@@ -0,0 +1,18748 @@
++From: Semen Kreyda <aswerklon@gmail.com>
++Date: Thu, Apr 18 2019 21:01:56 
++Subject: [PATCH] xr819: xradio: add xradio driver to @KERNEL/linux/kernel/projects/backports/stable/v4.19.32/
++
++OpenWrt Branch master Apr 18 2019  !!
++add xradio driver 
++on device-sun8i-h2-plus-orangepi-zero.
++
++Signed: Semen Kreyda <aswerklon@gmail.com>
++---
++ defconfigs/wifi 		| 1 +
++ Kconfig.local 			| 3 +++
++ local-symbols			| 1 +
++ MAINTAINERS			| 4 ++++
++ drivers/net/wireless/Kconfig	| 1 +
++ drivers/net/wireless/Makefile	| 1 +
++ drivers/net/wireless/xradio/	| 1624 ++
++
 +--- a/defconfigs/wifi	2017-11-05 22:03:11.000000000 +0200
 ++++ b/defconfigs/wifi	2019-04-12 21:12:15.000000000 +0300
 +@@ -132,5 +132,6 @@
