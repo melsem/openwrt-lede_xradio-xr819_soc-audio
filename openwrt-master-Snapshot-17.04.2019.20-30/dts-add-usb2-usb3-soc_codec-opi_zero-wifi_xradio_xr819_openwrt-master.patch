@@ -3749,7 +3749,7 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
 ++	            mgmt->bssid[4], mgmt->bssid[5]);
 ++}
 ++#endif //AP_HT_COMPAT_FIX
-+\ В конце файла нет новой строки
+++
 +--- a/drivers/net/wireless/xradio/ht.h	1970-01-01 03:00:00.000000000 +0300
 ++++ b/drivers/net/wireless/xradio/ht.h	2019-04-11 00:18:06.000000000 +0300
 +@@ -0,0 +1,44 @@
@@ -4572,7 +4572,7 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
 ++                   struct ieee80211_key_conf *key);
 ++
 ++#endif
-+\ В конце файла нет новой строки
+++
 +--- a/drivers/net/wireless/xradio/LICENSE	1970-01-01 03:00:00.000000000 +0300
 ++++ b/drivers/net/wireless/xradio/LICENSE	2019-04-11 00:18:06.000000000 +0300
 +@@ -0,0 +1,339 @@
@@ -5537,7 +5537,7 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
 ++void xradio_core_deinit(struct sdio_func* func);
 ++
 ++#endif
-+\ В конце файла нет новой строки
+++
 +--- a/drivers/net/wireless/xradio/Makefile	1970-01-01 03:00:00.000000000 +0300
 ++++ b/drivers/net/wireless/xradio/Makefile	2019-04-11 01:38:45.000000000 +0300
 +@@ -0,0 +1,54 @@
@@ -5690,7 +5690,7 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
 ++	}
 ++}
 ++#endif
-+\ В конце файла нет новой строки
+++
 +--- a/drivers/net/wireless/xradio/p2p.h	1970-01-01 03:00:00.000000000 +0300
 ++++ b/drivers/net/wireless/xradio/p2p.h	2019-04-11 00:18:06.000000000 +0300
 +@@ -0,0 +1,6 @@
@@ -18444,9 +18444,9 @@ Signed: Semen Kreyda <aswerklon@gmail.com>
 ++}
 ++
 ++#endif /* XRADIO_HWIO_H_INCLUDED */
-+Двоичные файлы a/drivers/net/wireless/xradio/xr819/boot_xr819.bin и b/drivers/net/wireless/xradio/xr819/boot_xr819.bin различаются
-+Двоичные файлы a/drivers/net/wireless/xradio/xr819/fw_xr819.bin и b/drivers/net/wireless/xradio/xr819/fw_xr819.bin различаются
-+Двоичные файлы a/drivers/net/wireless/xradio/xr819/sdd_xr819.bin и b/drivers/net/wireless/xradio/xr819/sdd_xr819.bin различаются
+++
+++
+++
 +--- a/drivers/net/wireless/xradio/xradio.h	1970-01-01 03:00:00.000000000 +0300
 ++++ b/drivers/net/wireless/xradio/xradio.h	2019-04-11 19:29:01.000000000 +0300
 +@@ -0,0 +1,577 @@

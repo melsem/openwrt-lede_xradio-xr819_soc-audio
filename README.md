@@ -1,5 +1,17 @@
-# OpenWrt Orange-Pi-Zero ADD drivers wifi xradio-xr819, soc-audio.
+# sunxi: Allwinner H2+ (OPi Zero) add package xradio:
+* Пакет xradio можно использовать в openwrt-master и openwrt(lede)-18.06.xx
 
+* Дрaйвер wifi радиомодуля xr819:
+* пакет подтянет все зависимости во время зборки..
 
-- **[HELP.](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/tree/master/openwrt-master-Snapshot-17.04.2019.20-30)**
+* Поместить xradio в $(BUILD_DIR)/package/kernel
+* cp 204-dts-wifi-add-xradio.patch -> $(BUILD_DIR)/package/kernel
+* Скопировать фаил 204-dts-wifi-add-xradio.patch 
+* в корневой каталог с исходиками $(BUILD_DIR). И с него дать команду:
+```
+patch -p1 < 204-dts-wifi-add-xradio.patch
 
+make clean
+make menuconfig
+make V=s
+```
