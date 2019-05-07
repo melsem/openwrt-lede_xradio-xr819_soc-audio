@@ -1,0 +1,15 @@
+--- a/target/linux/sunxi/image/cortex-a7.mk	2019-04-19 14:42:53.935328528 +0300
++++ b/target/linux/sunxi/image/cortex-a7.mk	2019-04-19 03:19:45.917714265 +0300
+@@ -110,7 +110,11 @@
+ 
+ define Device/sun8i-h2-plus-orangepi-zero
+   DEVICE_TITLE:=Xunlong Orange Pi Zero
+-  DEVICE_PACKAGES:=kmod-rtc-sunxi
++  DEVICE_PACKAGES:=kmod-rtc-sunxi \
++		kmod-sound-core \
++		kmod-sound-soc-sun4i-codec \
++		kmod-sound-soc-sun8i-codec \
++		kmod-sound-soc-sun8i-codec-analog
+   SUPPORTED_DEVICES:=xunlong,orangepi-zero
+   SUNXI_DTS:=sun8i-h2-plus-orangepi-zero
+ endef
