@@ -20,7 +20,7 @@ $(eval $(call Download,xr819))
 
 define KernelPackage/xradio
   SUBMENU:=Wireless Drivers
-  TITLE:=Xradio xr819 test wifi-drivers support
+  TITLE:=Xradio xr819: test wifi-openwrt-18.06.xx
   DEPENDS:=@TARGET_sunxi +kmod-mac80211 +wpad-mini
   FILES:=$(PKG_BUILD_DIR)/xradio_wlan.ko
   AUTOLOAD:=$(call AutoProbe,xradio_wlan)

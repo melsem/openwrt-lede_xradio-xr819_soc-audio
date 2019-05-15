@@ -32,7 +32,7 @@ amixer -c 0 -q set "DAC" 100%+ unmute &
 
 * ===================================================================================
 # Или можно будет воспользоваться уже пропатченными openwrt-master. Cделал зеркало с оpenwrt.
-* Срез openwrt-master сделан-17.04.2019-20:30. И обновляться возможно не будет.
+* Срез openwrt-master сделан-15.05.2019-13:30.
 ```
 git clone https://github.com/melsem/openwrt.git openwrt-master
 ./scripts/feeds update -a
