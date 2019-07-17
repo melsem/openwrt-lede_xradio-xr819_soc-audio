@@ -1,6 +1,5 @@
 # Пакет xradio для OpenWrt-master_kernel-4.19:
 * Дрaйвер wifi радиомодуля: xr819
-* поместить xradio в $(BUILD_DIR)/package/kernel
 * пакет подтянет все зависимости во время зборки..
 
 * Поместить add-patch_dts_file-wifi-xradio.patch в $(BUILD_DIR)
