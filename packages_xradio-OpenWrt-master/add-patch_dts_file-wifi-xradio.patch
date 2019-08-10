@@ -82,10 +82,10 @@
 +$(eval $(call KernelPackage,xradio))
 --- a/package/kernel/xradio/patches/052-add-wifi_xradio_xr819-driver.patch	1970-01-01 03:00:00.000000000 +0300
 +++ b/package/kernel/xradio/patches/052-add-wifi_xradio_xr819-driver.patch	2019-07-13 23:08:15.005528083 +0300
-@@ -0,0 +1,18659 @@
+@@ -0,0 +1,18662 @@
 +--- a/ap.c	1970-01-01 03:00:00.000000000 +0300
 ++++ b/ap.c	2019-04-12 22:41:22.000000000 +0300
-+@@ -0,0 +1,1624 @@
++@@ -0,0 +1,1627 @@
 ++/*
 ++ * STA and AP APIs for XRadio drivers
 ++ *
@@ -1255,8 +1255,11 @@
 ++		.frame_type = WSM_FRAME_TYPE_NULL,
 ++		.rate = 0xFF,
 ++	};
-++//	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif);
+++#if (LINUX_VERSION_CODE > KERNEL_VERSION(4, 14, 95))
 ++	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif, false);
+++#else
+++	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif);
+++#endif
 ++	if (WARN_ON(!frame.skb))
 ++		return -ENOMEM;
 ++
