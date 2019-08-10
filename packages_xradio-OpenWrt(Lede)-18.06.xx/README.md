@@ -1,6 +1,5 @@
-# Пакет xradio для OpenWrt(Lede)-18.06.xx:
+# Пакет xradio для OpenWrt(Lede)-18.06.xx: (kernel<=4.14.95)
 * Дрaйвер wifi радиомодуля: xr819
-* поместить xradio в $(BUILD_DIR)/package/kernel
 * пакет подтянет все зависимости во время зборки..
 
 * Поместить add-patch_dts_file-wifi-xradio.patch в $(BUILD_DIR)
