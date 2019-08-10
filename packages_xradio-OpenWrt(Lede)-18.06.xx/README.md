@@ -15,13 +15,3 @@ patch -p1 < add-patch_dts_file-wifi-xradio.patch
 make menuconfig
 make V=s
 ```
-
-* ===================================================================================
-* Что бы включить каналы в alsamixer:
-```
-amixer -c 0 -q set "Line Out" 84%+ unmute &
-amixer -c 0 -q set "DAC" 100%+ unmute &
-```
-* Что бы это автоматизировать надо еще прописать в /etc/rc.local
-
-
