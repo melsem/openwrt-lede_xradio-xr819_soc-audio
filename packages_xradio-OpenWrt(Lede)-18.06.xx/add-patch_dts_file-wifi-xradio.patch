@@ -1252,7 +1252,7 @@
 ++		.frame_type = WSM_FRAME_TYPE_NULL,
 ++		.rate = 0xFF,
 ++	};
-++#if (LINUX_VERSION_CODE > KERNEL_VERSION(4, 14, 95))
+++#if (LINUX_VERSION_CODE > KERNEL_VERSION(4, 14, 131))
 ++	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif, false);
 ++#else
 ++	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif);
