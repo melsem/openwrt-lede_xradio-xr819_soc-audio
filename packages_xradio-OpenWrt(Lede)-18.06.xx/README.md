@@ -1,7 +1,8 @@
-# Пакет xradio для OpenWrt(Lede)-18.06.xx: (kernel<=4.14.95)
+# Пакет xradio для OpenWrt(Lede)-18.06.xx: (kernel<=4.14.131)
 * Дрaйвер wifi радиомодуля: xr819
 * пакет подтянет все зависимости во время зборки..
 
+# Патч еще добавит отсутствующий профиль Xunlong Orange Pi Zero в 18.06.xx
 * Поместить add-patch_dts_file-wifi-xradio.patch в $(BUILD_DIR)
 * и дать команду:
 ```
