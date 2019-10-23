@@ -4805,7 +4805,7 @@
 ++	/* Intentionally not offloaded:					*/
 ++	/*.channel_switch	 = xradio_channel_switch,		*/
 ++	.remain_on_channel = xradio_remain_on_channel,
-++	.cancel_remain_on_channel = xradio_cancel_remain_on_channel,
+++	/*.cancel_remain_on_channel = xradio_cancel_remain_on_channel,	*/
 ++};
 ++
 ++
@@ -7270,8 +7270,8 @@
 ++#include "ap.h"
 ++
 ++	// MRK: added copy of this tx.c function here for testing, renamed _rx
-++
-++static void xradio_check_go_neg_conf_success_rx(struct xradio_common *hw_priv,
+++static void
+++xradio_check_go_neg_conf_success_rx(struct xradio_common *hw_priv,
 ++						u8 *action)
 ++{
 ++	if (action[2] == 0x50 && action[3] == 0x6F && action[4] == 0x9A &&
@@ -8605,12 +8605,12 @@
 ++#include <linux/semaphore.h>
 ++#include "wsm.h"
 ++
-++/* external */ struct sk_buff;
-++/* external */ struct cfg80211_scan_request;
-++/* external */ struct ieee80211_channel;
-++/* external */ struct ieee80211_hw;
-++/* external */ struct work_struct;
-++
+++struct sk_buff;
+++struct cfg80211_scan_request;
+++struct ieee80211_channel;
+++struct ieee80211_hw;
+++struct work_struct;
+++struct ieee80211_vif;
 ++#define SCAN_MAX_DELAY      (3*HZ)   //3s, add by yangfh for connect
 ++
 ++struct xradio_scan {
@@ -11167,16 +11167,16 @@
 ++int xradio_start(struct ieee80211_hw *dev);
 ++void xradio_stop(struct ieee80211_hw *dev);
 ++int xradio_add_interface(struct ieee80211_hw *dev, struct ieee80211_vif *vif);
+++
 ++void xradio_remove_interface(struct ieee80211_hw *dev, struct ieee80211_vif *vif);
+++
 ++int xradio_change_interface(struct ieee80211_hw *dev,
 ++                            struct ieee80211_vif *vif,
 ++                            enum nl80211_iftype new_type,
 ++                            bool p2p);
+++
 ++int xradio_config(struct ieee80211_hw *dev, u32 changed);
-++int xradio_change_interface(struct ieee80211_hw *dev,
-++                            struct ieee80211_vif *vif,
-++                            enum nl80211_iftype new_type,
-++                            bool p2p);
+++
 ++void xradio_configure_filter(struct ieee80211_hw *dev,
 ++                             unsigned int changed_flags,
 ++                             unsigned int *total_flags,
