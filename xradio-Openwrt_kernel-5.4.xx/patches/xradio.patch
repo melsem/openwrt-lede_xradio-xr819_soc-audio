@@ -1,0 +1,49 @@
+--- a/ap.c	2020-03-22 10:05:32.000000000 +0200
++++ b/ap.c	2020-03-27 21:36:07.442219682 +0200
+@@ -1173,11 +1173,8 @@
+ 		.rate = 0xFF,
+ 	};
+ 
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 17))
+ 	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif, false);
+-#else
+-	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif);
+-#endif
++
+ 	if (WARN_ON(!frame.skb))
+ 		return -ENOMEM;
+ 
+--- a/bh.c	2020-03-22 10:05:32.000000000 +0200
++++ b/bh.c	2020-03-27 21:36:07.446219702 +0200
+@@ -776,7 +776,7 @@
+ 		} else if (!status) {
+ 			/* check if there is data waiting but we missed the interrupt*/
+ 			if (xradio_bh_rx_availlen(hw_priv) > 0) {
+-				dev_warn(hw_priv->pdev, "missed interrupt\n");
++				//dev_warn(hw_priv->pdev, "missed interrupt\n");
+ 				if(xradio_bh_exchange(hw_priv) < 0){
+ 					break;
+ 				}
+--- a/rx.c	2020-03-22 10:05:32.000000000 +0200
++++ b/rx.c	2020-03-27 21:36:07.466219801 +0200
+@@ -394,7 +394,7 @@
+ 		/* Double-check status with lock held */
+ 		if (entry->status == XRADIO_LINK_SOFT) {
+ 			skb_queue_tail(&entry->rx_queue, skb);
+-			dev_warn(priv->hw_priv->pdev, "***skb_queue_tail\n");
++			//dev_warn(priv->hw_priv->pdev, "***skb_queue_tail\n");
+ 		} else
+ 			ieee80211_rx_irqsafe(priv->hw, skb);
+ 		spin_unlock_bh(&priv->ps_state_lock);
+--- a/main.c
++++ b/main.c
+@@ -161,7 +174,9 @@
+ 	/* Intentionally not offloaded:					*/
+ 	/*.channel_switch	 = xradio_channel_switch,		*/
+ 	.remain_on_channel = xradio_remain_on_channel,
++#if (LINUX_VERSION_CODE < KERNEL_VERSION(4, 19, 0))
+ 	.cancel_remain_on_channel = xradio_cancel_remain_on_channel,
++#endif
+ };
+ 
+ 
