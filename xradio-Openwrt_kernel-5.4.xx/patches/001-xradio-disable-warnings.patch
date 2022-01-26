@@ -1,18 +1,14 @@
 --- a/ap.c	2020-03-22 10:05:32.000000000 +0200
 +++ b/ap.c	2020-03-27 21:36:07.442219682 +0200
-@@ -1119,11 +1173,8 @@
- 		.rate = 0xFF,
- 	};
- 
--#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 17))
- 	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif, false);
--#else
--	frame.skb = ieee80211_nullfunc_get(priv->hw, priv->vif);
--#endif
+@@ -14,6 +14,8 @@
+ #include "ap.h"
+ #include "bh.h"
+ #include "net/mac80211.h"
 +
- 	if (WARN_ON(!frame.skb))
- 		return -ENOMEM;
++#include <linux/version.h>
  
+ #define XRADIO_LINK_ID_GC_TIMEOUT        ((unsigned long)(10 * HZ))
+ #define XRADIO_ENABLE_ARP_FILTER_OFFLOAD  3
 --- a/bh.c	2020-03-22 10:05:32.000000000 +0200
 +++ b/bh.c	2020-03-27 21:36:07.446219702 +0200
 @@ -776,7 +776,7 @@
