@@ -75,4 +75,6 @@ wget https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/raw/master/pa
 mtd -e fullflash write openwrt-sunxi-cortexa7-xunlong_orangepi-zero-lts-squashfs-fullflash.bin fullflash
 ```
 * And now, without MMC-flash, it will boot from a 16MB spi-flash.
-
+  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/18.png)
+  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/26.png)
+  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/33.png)
