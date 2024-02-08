@@ -1,4 +1,4 @@
-# An example of how to enable wifi (xradio-xr819) for Orangepi-Zero (OpenWrt 22.03.6).
+# An example of how to enable wifi (xradio-xr819) for Orangepi-Zero (OpenWrt 22.03.6 Linux version 5.10.201).
 
 1. Download the old stable firmware image 'OpenWrt 22.03.6' for MMC: [https://downloads.openwrt.org/releases/22.03.6/targets/sunxi/cortexa7/openwrt-22.03.6-sunxi-cortexa7-xunlong_orangepi-zero-ext4-sdcard.img.gz](https://downloads.openwrt.org/releases/22.03.6/targets/sunxi/cortexa7/openwrt-22.03.6-sunxi-cortexa7-xunlong_orangepi-zero-ext4-sdcard.img.gz)
 
