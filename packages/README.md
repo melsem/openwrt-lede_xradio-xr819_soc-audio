@@ -46,6 +46,9 @@ PING 8.8.8.8 (8.8.8.8): 56 data bytes
 ```
 cd /tmp
 opkg update
+wget https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/raw/master/packages/kmod-xradio_5.10.201+2023-05-10-a2dd9cd8-1_arm_cortex-a7_neon-vfpv4.ipk
+wget https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/raw/master/packages/busybox_1.35.0-231125.65937_arm_cortex-a7_neon-vfpv4.ipk
+wget https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/raw/master/packages/boot-config_1.5-09.01.2024_arm_cortex-a7_neon-vfpv4.ipk
 
 opkg install kmod-xradio_5.10.201+2023-05-10-a2dd9cd8-1_arm_cortex-a7_neon-vfpv4.ipk
 opkg install boot-config_1.5-09.01.2024_arm_cortex-a7_neon-vfpv4.ipk
