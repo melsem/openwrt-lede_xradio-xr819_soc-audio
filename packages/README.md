@@ -67,7 +67,12 @@ root@OpenWrt:~# ifconfig | sed -n '/eth0\(.*\)Link/,/Interrupt\:/p' | sed -n 's/
 root@OpenWrt:~# 
 ```
 
-*** Example write in spi-flash 16MB for orangepi-zero. ***
+* ** Example write in spi-flash 16MB for orangepi-zero. ***
 ```
 boot-config overlays fullflash
+cd /tmp
+wget https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/raw/master/packages/openwrt-sunxi-cortexa7-xunlong_orangepi-zero-lts-squashfs-fullflash.bin
+mtd -e fullflash write openwrt-sunxi-cortexa7-xunlong_orangepi-zero-lts-squashfs-fullflash.bin fullflash
 ```
+* And now, without MMC-flash, it will boot from a 16MB spi-flash.
+
