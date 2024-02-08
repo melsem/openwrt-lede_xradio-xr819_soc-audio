@@ -67,7 +67,7 @@ root@OpenWrt:~# ifconfig | sed -n '/eth0\(.*\)Link/,/Interrupt\:/p' | sed -n 's/
 root@OpenWrt:~# 
 ```
 
-* ** Example write in spi-flash 16MB for orangepi-zero. ***
+* ** Example write in spi-flash 16MB (w25q128 (16384 Kbytes)) for orangepi-zero. ***
 ```
 boot-config overlays fullflash
 cd /tmp
