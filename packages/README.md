@@ -55,6 +55,7 @@ opkg install busybox_1.35.0-231125.65937_arm_cortex-a7_neon-vfpv4.ipk
 reboot
 
 boot-config overlays wifi
+reboot
 ```
 * And to enter the OrangePi settings from an http browser, you need to find out what IP address:
 ```
@@ -70,6 +71,7 @@ root@OpenWrt:~#
 * ** Example write in spi-flash 16MB (w25q128 (16384 Kbytes)) for orangepi-zero. ***
 ```
 boot-config overlays fullflash
+reboot
 cd /tmp
 wget https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/raw/master/packages/openwrt-sunxi-cortexa7-xunlong_orangepi-zero-lts-squashfs-fullflash.bin
 mtd -e fullflash write openwrt-sunxi-cortexa7-xunlong_orangepi-zero-lts-squashfs-fullflash.bin fullflash
