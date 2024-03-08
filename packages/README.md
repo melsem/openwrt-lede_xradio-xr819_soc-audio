@@ -67,8 +67,13 @@ root@OpenWrt:~# ifconfig | sed -n '/eth0\(.*\)Link/,/Interrupt\:/p' | sed -n 's/
 192.168.22.215
 root@OpenWrt:~# 
 ```
+  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/18.png)
+  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/26.png)
+  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/33.png)
 
-* ** Example write in spi-flash 16MB (w25q128 (16384 Kbytes)) for orangepi-zero. ***
+#  ** Example write in spi-flash 16MB (w25q128 (16384 Kbytes)) for orangepi-zero. ***
+* Connect UART0 OrangePi to PC. Power on +5V.
+* And from the console run the commands:
 ```
 boot-config overlays fullflash
 reboot
@@ -77,6 +82,3 @@ wget https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/raw/master/pa
 mtd -e fullflash write openwrt-sunxi-cortexa7-xunlong_orangepi-zero-lts-squashfs-fullflash.bin fullflash
 ```
 * And now, without MMC-flash, it will boot from a 16MB spi-flash.
-  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/18.png)
-  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/26.png)
-  ![boot-config](https://github.com/melsem/openwrt-lede_xradio-xr819_soc-audio/blob/master/packages/33.png)
